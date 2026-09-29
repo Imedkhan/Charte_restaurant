@@ -1,10 +1,4 @@
-from pathlib import Path
-import base64
-
-logo_path = Path("/mnt/data/logo rym beach.png")
-logo_b64 = base64.b64encode(logo_path.read_bytes()).decode("ascii")
-
-html = r'''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
