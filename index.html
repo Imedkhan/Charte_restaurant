@@ -1,1468 +1,585 @@
+from pathlib import Path
+import base64
 
-<!DOCTYPE html>
+logo_path = Path("/mnt/data/logo rym beach.png")
+logo_b64 = base64.b64encode(logo_path.read_bytes()).decode("ascii")
+
+html = r'''<!DOCTYPE html>
 <html lang="fr">
-
 <head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Charte du Restaurant Walima | Seabel Rym Beach</title>
-
-    <style>
-
-        :root {
-            --seabel-blue: #006b8f;
-            --seabel-dark-blue: #004b63;
-            --seabel-light-blue: #eaf5f8;
-            --seabel-gold: #b79a5b;
-            --seabel-sand: #f7f4ee;
-            --seabel-text: #333333;
-            --white: #ffffff;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-
-            font-family:
-                "Segoe UI",
-                Arial,
-                sans-serif;
-
-            background: var(--seabel-sand);
-            color: var(--seabel-text);
-
-            line-height: 1.7;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 20px;
-        }
-
-
-        /* =====================================================
-           HEADER SEABEL
-        ===================================================== */
-
-        header {
-
-            background: var(--white);
-
-            border-radius: 18px;
-
-            padding: 30px 20px 25px;
-
-            margin-bottom: 28px;
-
-            text-align: center;
-
-            box-shadow:
-                0 6px 22px rgba(0,0,0,0.08);
-
-            border-top: 5px solid var(--seabel-blue);
-        }
-
-
-        /* LOGO */
-
-        .logo {
-
-            display: block;
-
-            max-width: 260px;
-
-            max-height: 100px;
-
-            width: auto;
-
-            height: auto;
-
-            margin: 0 auto 15px;
-
-            object-fit: contain;
-        }
-
-
-        .hotel-name {
-
-            font-size: 13px;
-
-            letter-spacing: 3px;
-
-            text-transform: uppercase;
-
-            color: var(--seabel-blue);
-
-            margin-bottom: 5px;
-        }
-
-
-        header h1 {
-
-            margin: 0;
-
-            font-family: Georgia, serif;
-
-            font-size: clamp(30px, 5vw, 45px);
-
-            font-weight: 400;
-
-            color: var(--seabel-dark-blue);
-        }
-
-
-        .subtitle {
-
-            margin-top: 8px;
-
-            color: #777;
-
-            font-size: 15px;
-        }
-
-
-        /* =====================================================
-           LANGUAGE FLAGS
-        ===================================================== */
-
-        .flags {
-
-            margin-top: 22px;
-
-            display: flex;
-
-            justify-content: center;
-
-            flex-wrap: wrap;
-
-            gap: 11px;
-        }
-
-
-        .flags img {
-
-            width: 31px;
-
-            height: 31px;
-
-            object-fit: cover;
-
-            border-radius: 50%;
-
-            cursor: pointer;
-
-            border: 2px solid #ddd;
-
-            transition: all 0.25s ease;
-        }
-
-
-        .flags img:hover {
-
-            transform: scale(1.15);
-
-            border-color: var(--seabel-gold);
-        }
-
-
-        /* =====================================================
-           INTRODUCTION
-        ===================================================== */
-
-        .intro {
-
-            background: var(--white);
-
-            border-radius: 15px;
-
-            padding: 28px;
-
-            margin-bottom: 24px;
-
-            text-align: center;
-
-            box-shadow:
-                0 5px 18px rgba(0,0,0,0.06);
-
-            border-left: 4px solid var(--seabel-gold);
-        }
-
-
-        .intro h2 {
-
-            margin-top: 0;
-
-            color: var(--seabel-blue);
-
-            font-family: Georgia, serif;
-
-            font-weight: 400;
-        }
-
-
-        .intro p {
-
-            max-width: 800px;
-
-            margin:
-                auto;
-        }
-
-
-        /* =====================================================
-           SECTIONS
-        ===================================================== */
-
-        .section {
-
-            background: var(--white);
-
-            border-radius: 15px;
-
-            padding: 28px;
-
-            margin-bottom: 24px;
-
-            box-shadow:
-                0 5px 18px rgba(0,0,0,0.06);
-        }
-
-
-        .section-title {
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 12px;
-
-            color: var(--seabel-blue);
-
-            font-family: Georgia, serif;
-
-            font-size: 25px;
-
-            font-weight: 400;
-
-            margin-top: 0;
-
-            margin-bottom: 23px;
-
-            padding-bottom: 13px;
-
-            border-bottom:
-                1px solid #e2e2e2;
-        }
-
-
-        .section-title .icon {
-
-            font-family: Arial, sans-serif;
-
-            font-size: 25px;
-        }
-
-
-        /* =====================================================
-           CONTENT CARDS
-        ===================================================== */
-
-        .items {
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(2, 1fr);
-
-            gap: 18px;
-        }
-
-
-        .item {
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #ffffff,
-                    #f7fafb
-                );
-
-            border-radius: 10px;
-
-            padding: 19px 20px;
-
-            border-left:
-                3px solid var(--seabel-gold);
-
-            transition:
-                transform 0.2s ease,
-                box-shadow 0.2s ease;
-        }
-
-
-        .item:hover {
-
-            transform: translateY(-2px);
-
-            box-shadow:
-                0 5px 15px rgba(0,0,0,0.08);
-        }
-
-
-        .item h3 {
-
-            margin: 0 0 8px;
-
-            color: var(--seabel-dark-blue);
-
-            font-size: 17px;
-
-            font-weight: 600;
-        }
-
-
-        .item p {
-
-            margin: 0;
-
-            font-size: 15px;
-
-            color: #4a4a4a;
-        }
-
-
-        /* =====================================================
-           MANAGEMENT
-        ===================================================== */
-
-        .management {
-
-            text-align: center;
-
-            margin-top: 32px;
-
-            color: var(--seabel-blue);
-
-            font-family: Georgia, serif;
-
-            font-size: 19px;
-        }
-
-
-        /* =====================================================
-           SEABEL SIGNATURE
-        ===================================================== */
-
-        .seabel-signature {
-
-            text-align: center;
-
-            margin-top: 8px;
-
-            color: var(--seabel-gold);
-
-            font-size: 12px;
-
-            letter-spacing: 2px;
-
-            text-transform: uppercase;
-        }
-
-
-        /* =====================================================
-           BACK TO TOP
-        ===================================================== */
-
-        .back-to-top {
-
-            text-align: center;
-
-            margin-top: 25px;
-        }
-
-
-        .back-to-top a {
-
-            display: inline-block;
-
-            padding:
-                8px 20px;
-
-            border-radius: 25px;
-
-            background:
-                var(--seabel-blue);
-
-            color: white;
-
-            text-decoration: none;
-
-            font-size: 13px;
-
-            transition:
-                background 0.2s ease;
-        }
-
-
-        .back-to-top a:hover {
-
-            background:
-                var(--seabel-dark-blue);
-        }
-
-
-        /* =====================================================
-           COPYRIGHT
-        ===================================================== */
-
-        .copyright {
-
-            text-align: center;
-
-            font-size: 11px;
-
-            color: #888;
-
-            margin-top: 22px;
-        }
-
-
-        /* =====================================================
-           MOBILE
-        ===================================================== */
-
-        @media (max-width: 700px) {
-
-            .container {
-
-                padding: 10px;
-            }
-
-
-            header {
-
-                padding:
-                    25px 15px 22px;
-
-                border-radius: 13px;
-            }
-
-
-            .logo {
-
-                max-width: 210px;
-            }
-
-
-            .items {
-
-                grid-template-columns: 1fr;
-            }
-
-
-            .section,
-            .intro {
-
-                padding:
-                    22px 17px;
-            }
-
-
-            .section-title {
-
-                font-size: 22px;
-            }
-
-        }
-
-
-        /* =====================================================
-           ARABIC RTL
-        ===================================================== */
-
-        body[dir="rtl"] {
-
-            text-align: right;
-        }
-
-
-        body[dir="rtl"] .item {
-
-            border-left: none;
-
-            border-right:
-                3px solid var(--seabel-gold);
-        }
-
-
-        body[dir="rtl"] .section-title {
-
-            justify-content: flex-start;
-        }
-
-    </style>
-
-
-    <script>
-
-        const translations = {
-
-            fr: {
-                hotel: "Seabel Rym Beach Djerba",
-                title: "Charte du Restaurant Walima",
-                subtitle: "Notre engagement pour une expérience de qualité",
-                introTitle: "Bienvenue au Walima",
-                introText:
-                    "Cette charte reflète notre engagement à offrir à nos clients une expérience agréable, chaleureuse et responsable.",
-                rulesTitle: "Règles générales",
-                commitmentsTitle: "Nos engagements",
-                expectationsTitle: "Nos attentes envers nos clients",
-                management: "La Direction",
-
-                rules: [
-                    ["⏰", "Horaires d’ouverture",
-                     "Le restaurant est ouvert selon les horaires affichés. Les horaires des repas sont strictement respectés afin de garantir la qualité du service."],
-
-                    ["👔", "Tenue vestimentaire",
-                     "Une tenue correcte est exigée au sein du restaurant afin de préserver une atmosphère agréable pour tous nos clients."],
-
-                    ["🚭🐶", "Articles interdits",
-                     "Il est interdit de fumer à l’intérieur du restaurant. Les animaux domestiques ne sont pas autorisés."]
-                ],
-
-                commitments: [
-                    ["🥗", "Qualité des repas",
-                     "Nous nous engageons à servir des repas frais, sains et équilibrés, préparés à partir d’ingrédients de qualité, en privilégiant les produits locaux et de saison."],
-
-                    ["🤝", "Hospitalité",
-                     "Notre équipe s’engage à vous réserver un accueil chaleureux, à assurer un service attentif et à vous apporter une assistance rapide afin de garantir une expérience positive."],
-
-                    ["🧼🍽️", "Propreté et sécurité alimentaire",
-                     "Nous respectons les normes d’hygiène et de sécurité alimentaire dans l’ensemble de nos opérations, conformément à la réglementation en vigueur."],
-
-                    ["🌱♻️", "Responsabilité environnementale",
-                     "Nous nous engageons à réduire notre impact environnemental grâce à des pratiques responsables, notamment le recyclage, la réduction du gaspillage alimentaire et la maîtrise de la consommation d’énergie et d’eau."],
-
-                    ["🧾🍽️", "Adaptabilité",
-                     "Nous sommes attentifs aux besoins alimentaires spécifiques et aux allergies de nos clients et nous nous efforçons de proposer des options adaptées."]
-                ],
-
-                expectations: [
-                    ["🙏", "Respect",
-                     "Nous demandons à nos clients de traiter le personnel et les autres convives avec respect et courtoisie."],
-
-                    ["📣", "Communication",
-                     "Pour toute demande particulière ou restriction alimentaire, nous vous invitons à nous en informer à l’avance afin de mieux vous servir."],
-
-                    ["⌛", "Ponctualité",
-                     "Nous encourageons nos clients à respecter les horaires d’ouverture du restaurant afin de garantir un service fluide et efficace."],
-
-                    ["🌍", "Éco-responsabilité",
-                     "Nous invitons nos clients à soutenir nos efforts environnementaux en limitant le gaspillage alimentaire et en utilisant les ressources disponibles de manière responsable."]
-                ]
-            },
-
-            en: {
-                hotel: "Seabel Rym Beach Djerba",
-                title: "Walima Restaurant Charter",
-                subtitle: "Our commitment to a quality experience",
-                introTitle: "Welcome to Walima",
-                introText:
-                    "This charter reflects our commitment to providing our guests with a pleasant, welcoming and responsible experience.",
-                rulesTitle: "General Rules",
-                commitmentsTitle: "Our Commitments",
-                expectationsTitle: "Expectations from Our Guests",
-                management: "The Management",
-
-                rules: [
-                    ["⏰", "Opening Hours",
-                     "The restaurant is open during the posted hours. Meal times are strictly observed to ensure the quality of service."],
-
-                    ["👔", "Dress Code",
-                     "Proper attire is required within the restaurant to maintain a pleasant atmosphere for all guests."],
-
-                    ["🚭🐶", "Prohibited Items",
-                     "Smoking is not permitted inside the restaurant. Pets are not allowed."]
-                ],
-
-                commitments: [
-                    ["🥗", "Meal Quality",
-                     "We are committed to serving fresh, healthy, and balanced meals, prepared with quality ingredients, favoring local and seasonal products."],
-
-                    ["🤝", "Hospitality",
-                     "Our staff is dedicated to providing a warm welcome, attentive service, and prompt assistance to ensure a positive experience for all our guests."],
-
-                    ["🧼🍽️", "Cleanliness and Food Safety",
-                     "We uphold hygiene and food safety standards in all our operations, in accordance with current regulations."],
-
-                    ["🌱♻️", "Environmental Responsibility",
-                     "We are committed to reducing our environmental footprint through sustainable practices, including recycling, reducing food waste, and conserving energy and water."],
-
-                    ["🧾🍽️", "Adaptability",
-                     "We are attentive to our guests’ specific dietary needs or allergies and strive to offer suitable options."]
-                ],
-
-                expectations: [
-                    ["🙏", "Respect",
-                     "Guests are expected to treat staff and other diners with respect and courtesy."],
-
-                    ["📣", "Communication",
-                     "For any special requests or dietary restrictions, please inform us in advance so we can better serve you."],
-
-                    ["⌛", "Punctuality",
-                     "We encourage our guests to respect the restaurant’s opening hours to ensure smooth and efficient service."],
-
-                    ["🌍", "Eco-Responsibility",
-                     "We invite our guests to support our eco-friendly efforts by limiting food waste and using available resources responsibly."]
-                ]
-            },
-
-            es: {
-                hotel: "Seabel Rym Beach Djerba",
-                title: "Carta del Restaurante Walima",
-                subtitle: "Nuestro compromiso con una experiencia de calidad",
-                introTitle: "Bienvenidos a Walima",
-                introText:
-                    "Esta carta refleja nuestro compromiso de ofrecer a nuestros clientes una experiencia agradable, acogedora y responsable.",
-                rulesTitle: "Normas generales",
-                commitmentsTitle: "Nuestros compromisos",
-                expectationsTitle: "Lo que esperamos de nuestros clientes",
-                management: "La Dirección",
-
-                rules: [
-                    ["⏰", "Horarios de apertura",
-                     "El restaurante está abierto durante los horarios indicados. Los horarios de las comidas se respetan estrictamente para garantizar la calidad del servicio."],
-
-                    ["👔", "Código de vestimenta",
-                     "Se requiere una vestimenta adecuada dentro del restaurante para mantener un ambiente agradable para todos los clientes."],
-
-                    ["🚭🐶", "Artículos prohibidos",
-                     "No está permitido fumar dentro del restaurante. No se permiten mascotas."]
-                ],
-
-                commitments: [
-                    ["🥗", "Calidad de los alimentos",
-                     "Nos comprometemos a servir comidas frescas, saludables y equilibradas, preparadas con ingredientes de calidad y priorizando productos locales y de temporada."],
-
-                    ["🤝", "Hospitalidad",
-                     "Nuestro equipo se compromete a ofrecer una cálida bienvenida, un servicio atento y una asistencia rápida."],
-
-                    ["🧼🍽️", "Limpieza y seguridad alimentaria",
-                     "Mantenemos los estándares de higiene y seguridad alimentaria en todas nuestras operaciones, de acuerdo con la normativa vigente."],
-
-                    ["🌱♻️", "Responsabilidad medioambiental",
-                     "Nos comprometemos a reducir nuestro impacto ambiental mediante prácticas sostenibles, como el reciclaje, la reducción del desperdicio alimentario y el ahorro de energía y agua."],
-
-                    ["🧾🍽️", "Adaptabilidad",
-                     "Prestamos atención a las necesidades dietéticas específicas y a las alergias de nuestros clientes y procuramos ofrecer opciones adecuadas."]
-                ],
-
-                expectations: [
-                    ["🙏", "Respeto",
-                     "Esperamos que nuestros clientes traten al personal y a los demás comensales con respeto y cortesía."],
-
-                    ["📣", "Comunicación",
-                     "Para cualquier solicitud especial o restricción alimentaria, le invitamos a informarnos con antelación."],
-
-                    ["⌛", "Puntualidad",
-                     "Animamos a nuestros clientes a respetar los horarios del restaurante para garantizar un servicio fluido y eficiente."],
-
-                    ["🌍", "Responsabilidad ecológica",
-                     "Invitamos a nuestros clientes a apoyar nuestros esfuerzos medioambientales limitando el desperdicio de alimentos y utilizando los recursos de manera responsable."]
-                ]
-            },
-
-            de: {
-                hotel: "Seabel Rym Beach Djerba",
-                title: "Restaurant-Charta Walima",
-                subtitle: "Unser Engagement für ein hochwertiges Erlebnis",
-                introTitle: "Willkommen im Walima",
-                introText:
-                    "Diese Charta steht für unser Engagement, unseren Gästen ein angenehmes, herzliches und verantwortungsbewusstes Erlebnis zu bieten.",
-                rulesTitle: "Allgemeine Regeln",
-                commitmentsTitle: "Unsere Verpflichtungen",
-                expectationsTitle: "Unsere Erwartungen an unsere Gäste",
-                management: "Die Direktion",
-
-                rules: [
-                    ["⏰", "Öffnungszeiten",
-                     "Das Restaurant ist zu den angegebenen Öffnungszeiten geöffnet. Die Essenszeiten werden strikt eingehalten, um die Qualität des Service zu gewährleisten."],
-
-                    ["👔", "Kleiderordnung",
-                     "Im Restaurant ist angemessene Kleidung erforderlich, um eine angenehme Atmosphäre für alle Gäste zu gewährleisten."],
-
-                    ["🚭🐶", "Verbotene Gegenstände",
-                     "Das Rauchen ist im Restaurant nicht gestattet. Haustiere sind nicht erlaubt."]
-                ],
-
-                commitments: [
-                    ["🥗", "Qualität der Speisen",
-                     "Wir verpflichten uns, frische, gesunde und ausgewogene Speisen aus hochwertigen Zutaten anzubieten und dabei lokale und saisonale Produkte zu bevorzugen."],
-
-                    ["🤝", "Gastfreundschaft",
-                     "Unser Team sorgt für einen herzlichen Empfang, aufmerksamen Service und schnelle Unterstützung."],
-
-                    ["🧼🍽️", "Sauberkeit und Lebensmittelsicherheit",
-                     "Wir halten die Hygiene- und Lebensmittelsicherheitsstandards gemäß den geltenden Vorschriften ein."],
-
-                    ["🌱♻️", "Umweltverantwortung",
-                     "Wir setzen uns dafür ein, unsere Umweltbelastung durch nachhaltige Praktiken wie Recycling, die Reduzierung von Lebensmittelverschwendung sowie einen bewussten Umgang mit Energie und Wasser zu reduzieren."],
-
-                    ["🧾🍽️", "Flexibilität",
-                     "Wir berücksichtigen die besonderen Ernährungsbedürfnisse und Allergien unserer Gäste und bemühen uns, geeignete Optionen anzubieten."]
-                ],
-
-                expectations: [
-                    ["🙏", "Respekt",
-                     "Wir erwarten von unseren Gästen einen respektvollen und höflichen Umgang mit unseren Mitarbeitern und anderen Gästen."],
-
-                    ["📣", "Kommunikation",
-                     "Bei besonderen Wünschen oder Ernährungsbeschränkungen bitten wir Sie, uns im Voraus zu informieren."],
-
-                    ["⌛", "Pünktlichkeit",
-                     "Wir bitten unsere Gäste, die Öffnungszeiten des Restaurants zu beachten, um einen reibungslosen Service zu gewährleisten."],
-
-                    ["🌍", "Umweltbewusstsein",
-                     "Wir laden unsere Gäste ein, unsere Umweltbemühungen zu unterstützen, indem sie Lebensmittelverschwendung vermeiden und Ressourcen verantwortungsvoll nutzen."]
-                ]
-            },
-
-            it: {
-                hotel: "Seabel Rym Beach Djerba",
-                title: "Carta del Ristorante Walima",
-                subtitle: "Il nostro impegno per un'esperienza di qualità",
-                introTitle: "Benvenuti al Walima",
-                introText:
-                    "Questa carta riflette il nostro impegno a offrire ai nostri ospiti un'esperienza piacevole, calorosa e responsabile.",
-                rulesTitle: "Regole generali",
-                commitmentsTitle: "I nostri impegni",
-                expectationsTitle: "Le nostre aspettative nei confronti degli ospiti",
-                management: "La Direzione",
-
-                rules: [
-                    ["⏰", "Orari di apertura",
-                     "Il ristorante è aperto negli orari indicati. Gli orari dei pasti sono rigorosamente rispettati per garantire la qualità del servizio."],
-
-                    ["👔", "Codice di abbigliamento",
-                     "È richiesto un abbigliamento adeguato all'interno del ristorante per mantenere un'atmosfera piacevole per tutti gli ospiti."],
-
-                    ["🚭🐶", "Articoli vietati",
-                     "È vietato fumare all'interno del ristorante. Gli animali domestici non sono ammessi."]
-                ],
-
-                commitments: [
-                    ["🥗", "Qualità dei pasti",
-                     "Ci impegniamo a servire pasti freschi, sani ed equilibrati, preparati con ingredienti di qualità, privilegiando prodotti locali e stagionali."],
-
-                    ["🤝", "Ospitalità",
-                     "Il nostro personale si impegna a offrire un'accoglienza calorosa, un servizio attento e un'assistenza tempestiva."],
-
-                    ["🧼🍽️", "Pulizia e sicurezza alimentare",
-                     "Rispettiamo gli standard di igiene e sicurezza alimentare in tutte le nostre attività, in conformità con le normative vigenti."],
-
-                    ["🌱♻️", "Responsabilità ambientale",
-                     "Ci impegniamo a ridurre il nostro impatto ambientale attraverso pratiche sostenibili, tra cui il riciclaggio, la riduzione degli sprechi alimentari e il risparmio di energia e acqua."],
-
-                    ["🧾🍽️", "Adattabilità",
-                     "Prestiamo attenzione alle esigenze alimentari specifiche e alle allergie dei nostri ospiti e ci impegniamo a offrire opzioni adeguate."]
-                ],
-
-                expectations: [
-                    ["🙏", "Rispetto",
-                     "Chiediamo ai nostri ospiti di trattare il personale e gli altri clienti con rispetto e cortesia."],
-
-                    ["📣", "Comunicazione",
-                     "Per richieste particolari o restrizioni alimentari, vi invitiamo a informarci in anticipo."],
-
-                    ["⌛", "Puntualità",
-                     "Invitiamo i nostri ospiti a rispettare gli orari del ristorante per garantire un servizio fluido ed efficiente."],
-
-                    ["🌍", "Responsabilità ambientale",
-                     "Invitiamo i nostri ospiti a sostenere i nostri sforzi ambientali limitando gli sprechi alimentari e utilizzando le risorse in modo responsabile."]
-                ]
-            },
-
-            pl: {
-                hotel: "Seabel Rym Beach Djerba",
-                title: "Karta Restauracji Walima",
-                subtitle: "Nasze zobowiązanie do zapewnienia wysokiej jakości doświadczeń",
-                introTitle: "Witamy w Walima",
-                introText:
-                    "Niniejsza karta odzwierciedla nasze zaangażowanie w zapewnienie naszym gościom przyjemnego, serdecznego i odpowiedzialnego doświadczenia.",
-                rulesTitle: "Zasady ogólne",
-                commitmentsTitle: "Nasze zobowiązania",
-                expectationsTitle: "Nasze oczekiwania wobec gości",
-                management: "Dyrekcja",
-
-                rules: [
-                    ["⏰", "Godziny otwarcia",
-                     "Restauracja jest otwarta w podanych godzinach. Godziny posiłków są ściśle przestrzegane, aby zapewnić wysoką jakość obsługi."],
-
-                    ["👔", "Strój",
-                     "W restauracji wymagany jest odpowiedni strój, aby zapewnić przyjemną atmosferę wszystkim gościom."],
-
-                    ["🚭🐶", "Przedmioty zabronione",
-                     "Palenie w restauracji jest zabronione. Zwierzęta nie są dozwolone."]
-                ],
-
-                commitments: [
-                    ["🥗", "Jakość posiłków",
-                     "Zobowiązujemy się do serwowania świeżych, zdrowych i zbilansowanych posiłków, przygotowanych z wysokiej jakości składników, z preferowaniem produktów lokalnych i sezonowych."],
-
-                    ["🤝", "Gościnność",
-                     "Nasz personel zapewnia serdeczne powitanie, uważną obsługę i szybką pomoc."],
-
-                    ["🧼🍽️", "Czystość i bezpieczeństwo żywności",
-                     "Przestrzegamy standardów higieny i bezpieczeństwa żywności zgodnie z obowiązującymi przepisami."],
-
-                    ["🌱♻️", "Odpowiedzialność środowiskowa",
-                     "Dążymy do ograniczenia naszego wpływu na środowisko poprzez recykling, ograniczanie marnowania żywności oraz oszczędzanie energii i wody."],
-
-                    ["🧾🍽️", "Elastyczność",
-                     "Zwracamy uwagę na szczególne potrzeby żywieniowe i alergie naszych gości oraz staramy się oferować odpowiednie opcje."]
-                ],
-
-                expectations: [
-                    ["🙏", "Szacunek",
-                     "Oczekujemy, że nasi goście będą traktować personel i innych gości z szacunkiem i uprzejmością."],
-
-                    ["📣", "Komunikacja",
-                     "W przypadku specjalnych próśb lub ograniczeń żywieniowych prosimy o wcześniejsze poinformowanie nas."],
-
-                    ["⌛", "Punktualność",
-                     "Zachęcamy naszych gości do przestrzegania godzin otwarcia restauracji, aby zapewnić sprawną obsługę."],
-
-                    ["🌍", "Odpowiedzialność ekologiczna",
-                     "Zachęcamy naszych gości do wspierania naszych działań ekologicznych poprzez ograniczanie marnowania żywności i odpowiedzialne korzystanie z zasobów."]
-                ]
-            },
-
-            ar: {
-                hotel: "سيبل ريم بيتش جربة",
-                title: "ميثاق مطعم وليمة",
-                subtitle: "التزامنا بتقديم تجربة مميزة",
-                introTitle: "مرحباً بكم في وليمة",
-                introText:
-                    "يعكس هذا الميثاق التزامنا بتوفير تجربة ممتعة، ودودة ومسؤولة لجميع ضيوفنا.",
-                rulesTitle: "القواعد العامة",
-                commitmentsTitle: "التزاماتنا",
-                expectationsTitle: "توقعاتنا من ضيوفنا",
-                management: "الإدارة",
-
-                rules: [
-                    ["⏰", "أوقات العمل",
-                     "يعمل المطعم وفق الأوقات المعلنة. يتم الالتزام بأوقات الوجبات بدقة لضمان جودة الخدمة."],
-
-                    ["👔", "اللباس",
-                     "يُرجى ارتداء ملابس مناسبة داخل المطعم للحفاظ على أجواء مريحة لجميع الضيوف."],
-
-                    ["🚭🐶", "الممنوعات",
-                     "يُمنع التدخين داخل المطعم. كما لا يُسمح بدخول الحيوانات الأليفة."]
-                ],
-
-                commitments: [
-                    ["🥗", "جودة الوجبات",
-                     "نلتزم بتقديم وجبات طازجة وصحية ومتوازنة، محضّرة من مكونات ذات جودة، مع تفضيل المنتجات المحلية والموسمية."],
-
-                    ["🤝", "حسن الضيافة",
-                     "يحرص فريقنا على تقديم استقبال دافئ وخدمة يقظة ومساعدة سريعة لضمان تجربة إيجابية لجميع ضيوفنا."],
-
-                    ["🧼🍽️", "النظافة وسلامة الغذاء",
-                     "نلتزم بمعايير النظافة وسلامة الغذاء في جميع عملياتنا، وفقاً للأنظمة واللوائح المعمول بها."],
-
-                    ["🌱♻️", "المسؤولية البيئية",
-                     "نلتزم بالحد من تأثيرنا على البيئة من خلال ممارسات مستدامة، مثل إعادة التدوير والحد من هدر الطعام وترشيد استهلاك الطاقة والمياه."],
-
-                    ["🧾🍽️", "المرونة",
-                     "نولي اهتماماً بالاحتياجات الغذائية الخاصة والحساسيات الغذائية لضيوفنا ونسعى إلى توفير خيارات مناسبة."]
-                ],
-
-                expectations: [
-                    ["🙏", "الاحترام",
-                     "نطلب من ضيوفنا التعامل مع الموظفين وباقي الضيوف باحترام ولباقة."],
-
-                    ["📣", "التواصل",
-                     "بالنسبة لأي طلب خاص أو قيود غذائية، يرجى إعلامنا مسبقاً حتى نتمكن من خدمتكم بشكل أفضل."],
-
-                    ["⌛", "الالتزام بالمواعيد",
-                     "نشجع ضيوفنا على احترام أوقات عمل المطعم لضمان خدمة سلسة وفعالة."],
-
-                    ["🌍", "المسؤولية البيئية",
-                     "ندعو ضيوفنا إلى دعم جهودنا البيئية من خلال الحد من هدر الطعام واستخدام الموارد المتاحة بطريقة مسؤولة."]
-                ]
-            }
-        };
-
-
-        function createItems(items) {
-
-            return items.map(item => `
-
-                <div class="item">
-
-                    <h3>
-                        ${item[0]} ${item[1]}
-                    </h3>
-
-                    <p>
-                        ${item[2]}
-                    </p>
-
-                </div>
-
-            `).join("");
-
-        }
-
-
-        function switchLanguage(language) {
-
-            const content =
-                translations[language];
-
-
-            document.documentElement.lang =
-                language;
-
-
-            document.querySelector(".hotel-name")
-                .textContent =
-                content.hotel;
-
-
-            document.querySelector("header h1")
-                .textContent =
-                content.title;
-
-
-            document.querySelector(".subtitle")
-                .textContent =
-                content.subtitle;
-
-
-            document.querySelector(".intro h2")
-                .textContent =
-                content.introTitle;
-
-
-            document.querySelector(".intro p")
-                .textContent =
-                content.introText;
-
-
-            document.querySelector("#rules-title")
-                .innerHTML =
-                `<span class="icon">📋</span>${content.rulesTitle}`;
-
-
-            document.querySelector("#commitments-title")
-                .innerHTML =
-                `<span class="icon">⭐</span>${content.commitmentsTitle}`;
-
-
-            document.querySelector("#expectations-title")
-                .innerHTML =
-                `<span class="icon">🤝</span>${content.expectationsTitle}`;
-
-
-            document.querySelector("#rules-items")
-                .innerHTML =
-                createItems(content.rules);
-
-
-            document.querySelector("#commitments-items")
-                .innerHTML =
-                createItems(content.commitments);
-
-
-            document.querySelector("#expectations-items")
-                .innerHTML =
-                createItems(content.expectations);
-
-
-            document.querySelector(".management")
-                .textContent =
-                content.management;
-
-
-            if (language === "ar") {
-
-                document.body.dir = "rtl";
-
-            } else {
-
-                document.body.dir = "ltr";
-
-            }
-
-        }
-
-    </script>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Charte du Restaurant Walima | Seabel Rym Beach</title>
+
+<style>
+:root{
+    --seabel-blue:#006b8f;
+    --seabel-dark-blue:#004b63;
+    --seabel-light-blue:#eaf5f8;
+    --seabel-gold:#b79a5b;
+    --seabel-sand:#f7f4ee;
+    --seabel-text:#333333;
+    --white:#ffffff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+    margin:0;padding:0;
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:var(--seabel-sand);
+    color:var(--seabel-text);
+    line-height:1.7;
+}
+.container{max-width:1100px;margin:auto;padding:20px}
+header{
+    background:var(--white);
+    border-radius:18px;
+    padding:30px 20px 25px;
+    margin-bottom:28px;
+    text-align:center;
+    box-shadow:0 6px 22px rgba(0,0,0,.08);
+    border-top:5px solid var(--seabel-blue);
+}
+.logo{
+    display:block;
+    max-width:280px;
+    max-height:120px;
+    width:auto;height:auto;
+    margin:0 auto 15px;
+    object-fit:contain;
+}
+.hotel-name{
+    font-size:13px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:var(--seabel-blue);
+    margin-bottom:5px;
+}
+header h1{
+    margin:0;
+    font-family:Georgia,serif;
+    font-size:clamp(30px,5vw,45px);
+    font-weight:400;
+    color:var(--seabel-dark-blue);
+}
+.subtitle{margin-top:8px;color:#777;font-size:15px}
+.flags{
+    margin-top:22px;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:11px;
+}
+.flags img{
+    width:31px;height:31px;
+    object-fit:cover;
+    border-radius:50%;
+    cursor:pointer;
+    border:2px solid #ddd;
+    transition:all .25s ease;
+}
+.flags img:hover{
+    transform:scale(1.15);
+    border-color:var(--seabel-gold);
+}
+.intro{
+    background:var(--white);
+    border-radius:15px;
+    padding:28px;
+    margin-bottom:24px;
+    text-align:center;
+    box-shadow:0 5px 18px rgba(0,0,0,.06);
+    border-left:4px solid var(--seabel-gold);
+}
+.intro h2{
+    margin-top:0;
+    color:var(--seabel-blue);
+    font-family:Georgia,serif;
+    font-weight:400;
+}
+.intro p{max-width:800px;margin:auto}
+.section{
+    background:var(--white);
+    border-radius:15px;
+    padding:28px;
+    margin-bottom:24px;
+    box-shadow:0 5px 18px rgba(0,0,0,.06);
+}
+.section-title{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:var(--seabel-blue);
+    font-family:Georgia,serif;
+    font-size:25px;
+    font-weight:400;
+    margin-top:0;
+    margin-bottom:23px;
+    padding-bottom:13px;
+    border-bottom:1px solid #e2e2e2;
+}
+.section-title .icon{font-family:Arial,sans-serif;font-size:25px}
+.items{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+.item{
+    background:linear-gradient(135deg,#fff,#f7fafb);
+    border-radius:10px;
+    padding:19px 20px;
+    border-left:3px solid var(--seabel-gold);
+    transition:transform .2s ease,box-shadow .2s ease;
+}
+.item:hover{
+    transform:translateY(-2px);
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+.item h3{
+    margin:0 0 8px;
+    color:var(--seabel-dark-blue);
+    font-size:17px;
+    font-weight:600;
+}
+.item p{margin:0;font-size:15px;color:#4a4a4a}
+.management{
+    text-align:center;
+    margin-top:32px;
+    color:var(--seabel-blue);
+    font-family:Georgia,serif;
+    font-size:19px;
+}
+.seabel-signature{
+    text-align:center;
+    margin-top:8px;
+    color:var(--seabel-gold);
+    font-size:12px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+.back-to-top{text-align:center;margin-top:25px}
+.back-to-top a{
+    display:inline-block;
+    padding:8px 20px;
+    border-radius:25px;
+    background:var(--seabel-blue);
+    color:white;
+    text-decoration:none;
+    font-size:13px;
+}
+.back-to-top a:hover{background:var(--seabel-dark-blue)}
+.copyright{
+    text-align:center;
+    font-size:11px;
+    color:#888;
+    margin-top:22px;
+}
+@media(max-width:700px){
+    .container{padding:10px}
+    header{padding:25px 15px 22px;border-radius:13px}
+    .logo{max-width:220px}
+    .items{grid-template-columns:1fr}
+    .section,.intro{padding:22px 17px}
+    .section-title{font-size:22px}
+}
+body[dir="rtl"]{text-align:right}
+body[dir="rtl"] .item{
+    border-left:none;
+    border-right:3px solid var(--seabel-gold);
+}
+</style>
+
+<script>
+const translations = {
+fr:{
+hotel:"Seabel Rym Beach Djerba",
+title:"Charte du Restaurant Walima",
+subtitle:"Notre engagement pour une expérience de qualité",
+introTitle:"Bienvenue au Walima",
+introText:"Cette charte reflète notre engagement à offrir à nos clients une expérience agréable, chaleureuse et responsable.",
+rulesTitle:"Règles générales",
+commitmentsTitle:"Nos engagements",
+expectationsTitle:"Nos attentes envers nos clients",
+management:"La Direction",
+rules:[
+["⏰","Horaires d’ouverture","Le restaurant est ouvert selon les horaires affichés. Les horaires des repas sont strictement respectés afin de garantir la qualité du service."],
+["👔","Tenue vestimentaire","Une tenue correcte est exigée au sein du restaurant afin de préserver une atmosphère agréable pour tous nos clients."],
+["🚭🐶","Articles interdits","Il est interdit de fumer à l’intérieur du restaurant. Les animaux domestiques ne sont pas autorisés."]
+],
+commitments:[
+["🥗","Qualité des repas","Nous nous engageons à servir des repas frais, sains et équilibrés, préparés à partir d’ingrédients de qualité, en privilégiant les produits locaux et de saison."],
+["🤝","Hospitalité","Notre équipe s’engage à vous réserver un accueil chaleureux, à assurer un service attentif et à vous apporter une assistance rapide afin de garantir une expérience positive."],
+["🧼🍽️","Propreté et sécurité alimentaire","Nous respectons les normes d’hygiène et de sécurité alimentaire dans l’ensemble de nos opérations, conformément à la réglementation en vigueur."],
+["🌱♻️","Responsabilité environnementale","Nous nous engageons à réduire notre impact environnemental grâce à des pratiques responsables, notamment le recyclage, la réduction du gaspillage alimentaire et la maîtrise de la consommation d’énergie et d’eau."],
+["🧾🍽️","Adaptabilité","Nous sommes attentifs aux besoins alimentaires spécifiques et aux allergies de nos clients et nous nous efforçons de proposer des options adaptées."]
+],
+expectations:[
+["🙏","Respect","Nous demandons à nos clients de traiter le personnel et les autres convives avec respect et courtoisie."],
+["📣","Communication","Pour toute demande particulière ou restriction alimentaire, nous vous invitons à nous en informer à l’avance afin de mieux vous servir."],
+["⌛","Ponctualité","Nous encourageons nos clients à respecter les horaires d’ouverture du restaurant afin de garantir un service fluide et efficace."],
+["🌍","Éco-responsabilité","Nous invitons nos clients à soutenir nos efforts environnementaux en limitant le gaspillage alimentaire et en utilisant les ressources disponibles de manière responsable."]
+]
+},
+
+en:{
+hotel:"Seabel Rym Beach Djerba",
+title:"Walima Restaurant Charter",
+subtitle:"Our commitment to a quality experience",
+introTitle:"Welcome to Walima",
+introText:"This charter reflects our commitment to providing our guests with a pleasant, welcoming and responsible experience.",
+rulesTitle:"General Rules",
+commitmentsTitle:"Our Commitments",
+expectationsTitle:"Expectations from Our Guests",
+management:"The Management",
+rules:[
+["⏰","Opening Hours","The restaurant is open during the posted hours. Meal times are strictly observed to ensure the quality of service."],
+["👔","Dress Code","Proper attire is required within the restaurant to maintain a pleasant atmosphere for all guests."],
+["🚭🐶","Prohibited Items","Smoking is not permitted inside the restaurant. Pets are not allowed."]
+],
+commitments:[
+["🥗","Meal Quality","We are committed to serving fresh, healthy, and balanced meals, prepared with quality ingredients, favoring local and seasonal products."],
+["🤝","Hospitality","Our staff is dedicated to providing a warm welcome, attentive service, and prompt assistance to ensure a positive experience for all our guests."],
+["🧼🍽️","Cleanliness and Food Safety","We uphold hygiene and food safety standards in all our operations, in accordance with current regulations."],
+["🌱♻️","Environmental Responsibility","We are committed to reducing our environmental footprint through sustainable practices, including recycling, reducing food waste, and conserving energy and water."],
+["🧾🍽️","Adaptability","We are attentive to our guests’ specific dietary needs or allergies and strive to offer suitable options."]
+],
+expectations:[
+["🙏","Respect","Guests are expected to treat staff and other diners with respect and courtesy."],
+["📣","Communication","For any special requests or dietary restrictions, please inform us in advance so we can better serve you."],
+["⌛","Punctuality","We encourage our guests to respect the restaurant’s opening hours to ensure smooth and efficient service."],
+["🌍","Eco-Responsibility","We invite our guests to support our eco-friendly efforts by limiting food waste and using available resources responsibly."]
+]
+},
+
+pt:{
+hotel:"Seabel Rym Beach Djerba",
+title:"Carta do Restaurante Walima",
+subtitle:"O nosso compromisso com uma experiência de qualidade",
+introTitle:"Bem-vindo ao Walima",
+introText:"Esta carta reflete o nosso compromisso em proporcionar aos nossos hóspedes uma experiência agradável, acolhedora e responsável.",
+rulesTitle:"Regras gerais",
+commitmentsTitle:"Os nossos compromissos",
+expectationsTitle:"O que esperamos dos nossos hóspedes",
+management:"A Direção",
+rules:[
+["⏰","Horário de funcionamento","O restaurante está aberto durante os horários indicados. Os horários das refeições são rigorosamente respeitados para garantir a qualidade do serviço."],
+["👔","Código de vestuário","É necessário usar uma vestimenta adequada no restaurante para manter um ambiente agradável para todos os hóspedes."],
+["🚭🐶","Itens proibidos","Não é permitido fumar dentro do restaurante. Não são permitidos animais de estimação."]
+],
+commitments:[
+["🥗","Qualidade das refeições","Comprometemo-nos a servir refeições frescas, saudáveis e equilibradas, preparadas com ingredientes de qualidade, privilegiando produtos locais e sazonais."],
+["🤝","Hospitalidade","A nossa equipa dedica-se a proporcionar um acolhimento caloroso, um serviço atencioso e uma assistência rápida, garantindo uma experiência positiva para todos os nossos hóspedes."],
+["🧼🍽️","Limpeza e segurança alimentar","Mantemos elevados padrões de higiene e segurança alimentar em todas as nossas operações, de acordo com a regulamentação em vigor."],
+["🌱♻️","Responsabilidade ambiental","Comprometemo-nos a reduzir o nosso impacto ambiental através de práticas sustentáveis, incluindo a reciclagem, a redução do desperdício alimentar e a poupança de energia e água."],
+["🧾🍽️","Adaptabilidade","Estamos atentos às necessidades alimentares específicas e às alergias dos nossos hóspedes e procuramos disponibilizar opções adequadas."]
+],
+expectations:[
+["🙏","Respeito","Esperamos que os nossos hóspedes tratem o pessoal e os outros clientes com respeito e cortesia."],
+["📣","Comunicação","Para qualquer pedido especial ou restrição alimentar, pedimos que nos informe antecipadamente para podermos prestar um melhor serviço."],
+["⌛","Pontualidade","Incentivamos os nossos hóspedes a respeitar os horários de funcionamento do restaurante para garantir um serviço fluido e eficiente."],
+["🌍","Responsabilidade ambiental","Convidamos os nossos hóspedes a apoiar os nossos esforços ambientais, limitando o desperdício alimentar e utilizando os recursos disponíveis de forma responsável."]
+]
+},
+
+de:{
+hotel:"Seabel Rym Beach Djerba",
+title:"Restaurant-Charta Walima",
+subtitle:"Unser Engagement für ein hochwertiges Erlebnis",
+introTitle:"Willkommen im Walima",
+introText:"Diese Charta steht für unser Engagement, unseren Gästen ein angenehmes, herzliches und verantwortungsbewusstes Erlebnis zu bieten.",
+rulesTitle:"Allgemeine Regeln",
+commitmentsTitle:"Unsere Verpflichtungen",
+expectationsTitle:"Unsere Erwartungen an unsere Gäste",
+management:"Die Direktion",
+rules:[
+["⏰","Öffnungszeiten","Das Restaurant ist zu den angegebenen Öffnungszeiten geöffnet. Die Essenszeiten werden strikt eingehalten, um die Qualität des Service zu gewährleisten."],
+["👔","Kleiderordnung","Im Restaurant ist angemessene Kleidung erforderlich, um eine angenehme Atmosphäre für alle Gäste zu gewährleisten."],
+["🚭🐶","Verbotene Gegenstände","Das Rauchen ist im Restaurant nicht gestattet. Haustiere sind nicht erlaubt."]
+],
+commitments:[
+["🥗","Qualität der Speisen","Wir verpflichten uns, frische, gesunde und ausgewogene Speisen aus hochwertigen Zutaten anzubieten und dabei lokale und saisonale Produkte zu bevorzugen."],
+["🤝","Gastfreundschaft","Unser Team sorgt für einen herzlichen Empfang, aufmerksamen Service und schnelle Unterstützung."],
+["🧼🍽️","Sauberkeit und Lebensmittelsicherheit","Wir halten die Hygiene- und Lebensmittelsicherheitsstandards gemäß den geltenden Vorschriften ein."],
+["🌱♻️","Umweltverantwortung","Wir setzen uns dafür ein, unsere Umweltbelastung durch nachhaltige Praktiken wie Recycling, die Reduzierung von Lebensmittelverschwendung sowie einen bewussten Umgang mit Energie und Wasser zu reduzieren."],
+["🧾🍽️","Flexibilität","Wir berücksichtigen die besonderen Ernährungsbedürfnisse und Allergien unserer Gäste und bemühen uns, geeignete Optionen anzubieten."]
+],
+expectations:[
+["🙏","Respekt","Wir erwarten von unseren Gästen einen respektvollen und höflichen Umgang mit unseren Mitarbeitern und anderen Gästen."],
+["📣","Kommunikation","Bei besonderen Wünschen oder Ernährungsbeschränkungen bitten wir Sie, uns im Voraus zu informieren."],
+["⌛","Pünktlichkeit","Wir bitten unsere Gäste, die Öffnungszeiten des Restaurants zu beachten, um einen reibungslosen Service zu gewährleisten."],
+["🌍","Umweltbewusstsein","Wir laden unsere Gäste ein, unsere Umweltbemühungen zu unterstützen, indem sie Lebensmittelverschwendung vermeiden und Ressourcen verantwortungsvoll nutzen."]
+]
+},
+
+it:{
+hotel:"Seabel Rym Beach Djerba",
+title:"Carta del Ristorante Walima",
+subtitle:"Il nostro impegno per un'esperienza di qualità",
+introTitle:"Benvenuti al Walima",
+introText:"Questa carta riflette il nostro impegno a offrire ai nostri ospiti un'esperienza piacevole, calorosa e responsabile.",
+rulesTitle:"Regole generali",
+commitmentsTitle:"I nostri impegni",
+expectationsTitle:"Le nostre aspettative nei confronti degli ospiti",
+management:"La Direzione",
+rules:[
+["⏰","Orari di apertura","Il ristorante è aperto negli orari indicati. Gli orari dei pasti sono rigorosamente rispettati per garantire la qualità del servizio."],
+["👔","Codice di abbigliamento","È richiesto un abbigliamento adeguato all'interno del ristorante per mantenere un'atmosfera piacevole per tutti gli ospiti."],
+["🚭🐶","Articoli vietati","È vietato fumare all'interno del ristorante. Gli animali domestici non sono ammessi."]
+],
+commitments:[
+["🥗","Qualità dei pasti","Ci impegniamo a servire pasti freschi, sani ed equilibrati, preparati con ingredienti di qualità, privilegiando prodotti locali e stagionali."],
+["🤝","Ospitalità","Il nostro personale si impegna a offrire un'accoglienza calorosa, un servizio attento e un'assistenza tempestiva."],
+["🧼🍽️","Pulizia e sicurezza alimentare","Rispettiamo gli standard di igiene e sicurezza alimentare in tutte le nostre attività, in conformità con le normative vigenti."],
+["🌱♻️","Responsabilità ambientale","Ci impegniamo a ridurre il nostro impatto ambientale attraverso pratiche sostenibili, tra cui il riciclaggio, la riduzione degli sprechi alimentari e il risparmio di energia e acqua."],
+["🧾🍽️","Adattabilità","Prestiamo attenzione alle esigenze alimentari specifiche e alle allergie dei nostri ospiti e ci impegniamo a offrire opzioni adeguate."]
+],
+expectations:[
+["🙏","Rispetto","Chiediamo ai nostri ospiti di trattare il personale e gli altri clienti con rispetto e cortesia."],
+["📣","Comunicazione","Per richieste particolari o restrizioni alimentari, vi invitiamo a informarci in anticipo."],
+["⌛","Puntualità","Invitiamo i nostri ospiti a rispettare gli orari del ristorante per garantire un servizio fluido ed efficiente."],
+["🌍","Responsabilità ambientale","Invitiamo i nostri ospiti a sostenere i nostri sforzi ambientali limitando gli sprechi alimentari e utilizzando le risorse in modo responsabile."]
+]
+},
+
+pl:{
+hotel:"Seabel Rym Beach Djerba",
+title:"Karta Restauracji Walima",
+subtitle:"Nasze zobowiązanie do zapewnienia wysokiej jakości doświadczeń",
+introTitle:"Witamy w Walima",
+introText:"Niniejsza karta odzwierciedla nasze zaangażowanie w zapewnienie naszym gościom przyjemnego, serdecznego i odpowiedzialnego doświadczenia.",
+rulesTitle:"Zasady ogólne",
+commitmentsTitle:"Nasze zobowiązania",
+expectationsTitle:"Nasze oczekiwania wobec gości",
+management:"Dyrekcja",
+rules:[
+["⏰","Godziny otwarcia","Restauracja jest otwarta w podanych godzinach. Godziny posiłków są ściśle przestrzegane, aby zapewnić wysoką jakość obsługi."],
+["👔","Strój","W restauracji wymagany jest odpowiedni strój, aby zapewnić przyjemną atmosferę wszystkim gościom."],
+["🚭🐶","Przedmioty zabronione","Palenie w restauracji jest zabronione. Zwierzęta nie są dozwolone."]
+],
+commitments:[
+["🥗","Jakość posiłków","Zobowiązujemy się do serwowania świeżych, zdrowych i zbilansowanych posiłków, przygotowanych z wysokiej jakości składników, z preferowaniem produktów lokalnych i sezonowych."],
+["🤝","Gościnność","Nasz personel zapewnia serdeczne powitanie, uważną obsługę i szybką pomoc."],
+["🧼🍽️","Czystość i bezpieczeństwo żywności","Przestrzegamy standardów higieny i bezpieczeństwa żywności zgodnie z obowiązującymi przepisami."],
+["🌱♻️","Odpowiedzialność środowiskowa","Dążymy do ograniczenia naszego wpływu na środowisko poprzez recykling, ograniczanie marnowania żywności oraz oszczędzanie energii i wody."],
+["🧾🍽️","Elastyczność","Zwracamy uwagę na szczególne potrzeby żywieniowe i alergie naszych gości oraz staramy się oferować odpowiednie opcje."]
+],
+expectations:[
+["🙏","Szacunek","Oczekujemy, że nasi goście będą traktować personel i innych gości z szacunkiem i uprzejmością."],
+["📣","Komunikacja","W przypadku specjalnych próśb lub ograniczeń żywieniowych prosimy o wcześniejsze poinformowanie nas."],
+["⌛","Punktualność","Zachęcamy naszych gości do przestrzegania godzin otwarcia restauracji, aby zapewnić sprawną obsługę."],
+["🌍","Odpowiedzialność ekologiczna","Zachęcamy naszych gości do wspierania naszych działań ekologicznych poprzez ograniczanie marnowania żywności i odpowiedzialne korzystanie z zasobów."]
+]
+},
+
+ar:{
+hotel:"سيبل ريم بيتش جربة",
+title:"ميثاق مطعم وليمة",
+subtitle:"التزامنا بتقديم تجربة مميزة",
+introTitle:"مرحباً بكم في وليمة",
+introText:"يعكس هذا الميثاق التزامنا بتوفير تجربة ممتعة، ودودة ومسؤولة لجميع ضيوفنا.",
+rulesTitle:"القواعد العامة",
+commitmentsTitle:"التزاماتنا",
+expectationsTitle:"توقعاتنا من ضيوفنا",
+management:"الإدارة",
+rules:[
+["⏰","أوقات العمل","يعمل المطعم وفق الأوقات المعلنة. يتم الالتزام بأوقات الوجبات بدقة لضمان جودة الخدمة."],
+["👔","اللباس","يُرجى ارتداء ملابس مناسبة داخل المطعم للحفاظ على أجواء مريحة لجميع الضيوف."],
+["🚭🐶","الممنوعات","يُمنع التدخين داخل المطعم. كما لا يُسمح بدخول الحيوانات الأليفة."]
+],
+commitments:[
+["🥗","جودة الوجبات","نلتزم بتقديم وجبات طازجة وصحية ومتوازنة، محضّرة من مكونات ذات جودة، مع تفضيل المنتجات المحلية والموسمية."],
+["🤝","حسن الضيافة","يحرص فريقنا على تقديم استقبال دافئ وخدمة يقظة ومساعدة سريعة لضمان تجربة إيجابية لجميع ضيوفنا."],
+["🧼🍽️","النظافة وسلامة الغذاء","نلتزم بمعايير النظافة وسلامة الغذاء في جميع عملياتنا، وفقاً للأنظمة واللوائح المعمول بها."],
+["🌱♻️","المسؤولية البيئية","نلتزم بالحد من تأثيرنا على البيئة من خلال ممارسات مستدامة، مثل إعادة التدوير والحد من هدر الطعام وترشيد استهلاك الطاقة والمياه."],
+["🧾🍽️","المرونة","نولي اهتماماً بالاحتياجات الغذائية الخاصة والحساسيات الغذائية لضيوفنا ونسعى إلى توفير خيارات مناسبة."]
+],
+expectations:[
+["🙏","الاحترام","نطلب من ضيوفنا التعامل مع الموظفين وباقي الضيوف باحترام ولباقة."],
+["📣","التواصل","بالنسبة لأي طلب خاص أو قيود غذائية، يرجى إعلامنا مسبقاً حتى نتمكن من خدمتكم بشكل أفضل."],
+["⌛","الالتزام بالمواعيد","نشجع ضيوفنا على احترام أوقات عمل المطعم لضمان خدمة سلسة وفعالة."],
+["🌍","المسؤولية البيئية","ندعو ضيوفنا إلى دعم جهودنا البيئية من خلال الحد من هدر الطعام واستخدام الموارد المتاحة بطريقة مسؤولة."]
+]
+}
+};
+
+function createItems(items){
+    return items.map(item=>`
+        <div class="item">
+            <h3>${item[0]} ${item[1]}</h3>
+            <p>${item[2]}</p>
+        </div>
+    `).join("");
+}
+
+function switchLanguage(language){
+    const c=translations[language];
+
+    document.documentElement.lang=language;
+    document.body.dir=(language==="ar")?"rtl":"ltr";
+
+    document.querySelector(".hotel-name").textContent=c.hotel;
+    document.querySelector("header h1").textContent=c.title;
+    document.querySelector(".subtitle").textContent=c.subtitle;
+    document.querySelector(".intro h2").textContent=c.introTitle;
+    document.querySelector(".intro p").textContent=c.introText;
+
+    document.querySelector("#rules-title").innerHTML=`<span class="icon">📋</span>${c.rulesTitle}`;
+    document.querySelector("#commitments-title").innerHTML=`<span class="icon">⭐</span>${c.commitmentsTitle}`;
+    document.querySelector("#expectations-title").innerHTML=`<span class="icon">🤝</span>${c.expectationsTitle}`;
+
+    document.querySelector("#rules-items").innerHTML=createItems(c.rules);
+    document.querySelector("#commitments-items").innerHTML=createItems(c.commitments);
+    document.querySelector("#expectations-items").innerHTML=createItems(c.expectations);
+
+    document.querySelector(".management").textContent=c.management;
+}
+</script>
 </head>
-
 
 <body>
 
-
 <div class="container">
 
+<header>
 
-    <!-- =====================================================
-         HEADER
-    ===================================================== -->
+<img class="logo"
+     src="data:image/png;base64,''' + logo_b64 + r'''"
+     alt="Seabel Rym Beach Djerba">
 
-    <header>
+<div class="hotel-name">Seabel Rym Beach Djerba</div>
 
+<h1>Charte du Restaurant Walima</h1>
 
-        <!--
-        Logo officiel Rym Beach.
-
-        IMPORTANT :
-        Pour une utilisation définitive, je recommande de
-        télécharger le fichier logo officiel depuis le site
-        Seabel et de le placer dans votre dossier :
-
-        images/seabel-rym-beach-logo.png
-
-        puis de remplacer le src ci-dessous.
-        -->
-
-        <img
-            class="logo"
-            src="images/seabel-rym-beach-logo.png"
-            alt="Seabel Rym Beach Djerba"
-        >
-
-
-        <div class="hotel-name">
-            Seabel Rym Beach Djerba
-        </div>
-
-
-        <h1>
-            Charte du Restaurant Walima
-        </h1>
-
-
-        <div class="subtitle">
-            Notre engagement pour une expérience de qualité
-        </div>
-
-
-        <div class="flags">
-
-
-            <img
-                src="https://flagcdn.com/fr.svg"
-                alt="Français"
-                title="Français"
-                onclick="switchLanguage('fr')"
-            >
-
-
-            <img
-                src="https://flagcdn.com/gb.svg"
-                alt="English"
-                title="English"
-                onclick="switchLanguage('en')"
-            >
-
-
-            <img
-                src="https://flagcdn.com/es.svg"
-                alt="Español"
-                title="Español"
-                onclick="switchLanguage('es')"
-            >
-
-
-            <img
-                src="https://flagcdn.com/de.svg"
-                alt="Deutsch"
-                title="Deutsch"
-                onclick="switchLanguage('de')"
-            >
-
-
-            <img
-                src="https://flagcdn.com/it.svg"
-                alt="Italiano"
-                title="Italiano"
-                onclick="switchLanguage('it')"
-            >
-
-
-            <img
-                src="https://flagcdn.com/pl.svg"
-                alt="Polski"
-                title="Polski"
-                onclick="switchLanguage('pl')"
-            >
-
-
-            <img
-                src="https://flagcdn.com/tn.svg"
-                alt="العربية"
-                title="العربية"
-                onclick="switchLanguage('ar')"
-            >
-
-
-        </div>
-
-    </header>
-
-
-
-    <!-- =====================================================
-         INTRO
-    ===================================================== -->
-
-    <section class="intro">
-
-
-        <h2>
-            Bienvenue au Walima
-        </h2>
-
-
-        <p>
-            Cette charte reflète notre engagement à offrir
-            à nos clients une expérience agréable,
-            chaleureuse et responsable.
-        </p>
-
-
-    </section>
-
-
-
-    <!-- =====================================================
-         REGLES GENERALES
-    ===================================================== -->
-
-    <section class="section">
-
-
-        <h2
-            id="rules-title"
-            class="section-title"
-        >
-
-            <span class="icon">📋</span>
-
-            Règles générales
-
-        </h2>
-
-
-        <div
-            id="rules-items"
-            class="items"
-        >
-
-
-            <div class="item">
-
-                <h3>
-                    ⏰ Horaires d’ouverture
-                </h3>
-
-                <p>
-                    Le restaurant est ouvert selon les horaires
-                    affichés. Les horaires des repas sont strictement
-                    respectés afin de garantir la qualité du service.
-                </p>
-
-            </div>
-
-
-            <div class="item">
-
-                <h3>
-                    👔 Tenue vestimentaire
-                </h3>
-
-                <p>
-                    Une tenue correcte est exigée au sein du restaurant
-                    afin de préserver une atmosphère agréable pour
-                    tous nos clients.
-                </p>
-
-            </div>
-
-
-            <div class="item">
-
-                <h3>
-                    🚭🐶 Articles interdits
-                </h3>
-
-                <p>
-                    Il est interdit de fumer à l’intérieur du restaurant.
-                    Les animaux domestiques ne sont pas autorisés.
-                </p>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         ENGAGEMENTS
-    ===================================================== -->
-
-    <section class="section">
-
-
-        <h2
-            id="commitments-title"
-            class="section-title"
-        >
-
-            <span class="icon">⭐</span>
-
-            Nos engagements
-
-        </h2>
-
-
-        <div
-            id="commitments-items"
-            class="items"
-        >
-
-
-            <div class="item">
-
-                <h3>
-                    🥗 Qualité des repas
-                </h3>
-
-                <p>
-                    Nous nous engageons à servir des repas frais,
-                    sains et équilibrés, préparés à partir
-                    d’ingrédients de qualité, en privilégiant
-                    les produits locaux et de saison.
-                </p>
-
-            </div>
-
-
-            <div class="item">
-
-                <h3>
-                    🤝 Hospitalité
-                </h3>
-
-                <p>
-                    Notre équipe s’engage à vous réserver un accueil
-                    chaleureux, à assurer un service attentif et
-                    à vous apporter une assistance rapide afin
-                    de garantir une expérience positive.
-                </p>
-
-            </div>
-
-
-            <div class="item">
-
-                <h3>
-                    🧼🍽️ Propreté et sécurité alimentaire
-                </h3>
-
-                <p>
-                    Nous respectons les normes d’hygiène et de
-                    sécurité alimentaire dans l’ensemble de nos
-                    opérations, conformément à la réglementation
-                    en vigueur.
-                </p>
-
-            </div>
-
-
-            <div class="item">
-
-                <h3>
-                    🌱♻️ Responsabilité environnementale
-                </h3>
-
-                <p>
-                    Nous nous engageons à réduire notre impact
-                    environnemental grâce à des pratiques
-                    responsables, notamment le recyclage,
-                    la réduction du gaspillage alimentaire
-                    et la maîtrise de la consommation d’énergie
-                    et d’eau.
-                </p>
-
-            </div>
-
-
-            <div class="item">
-
-                <h3>
-                    🧾🍽️ Adaptabilité
-                </h3>
-
-                <p>
-                    Nous sommes attentifs aux besoins alimentaires
-                    spécifiques et aux allergies de nos clients
-                    et nous nous efforçons de proposer
-                    des options adaptées.
-                </p>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         ATTENTES CLIENTS
-    ===================================================== -->
-
-    <section class="section">
-
-
-        <h2
-            id="expectations-title"
-            class="section-title"
-        >
-
-            <span class="icon">🤝</span>
-
-            Nos attentes envers nos clients
-
-        </h2>
-
-
-        <div
-            id="expectations-items"
-            class="items"
-        >
-
-
-            <div class="item">
-
-                <h3>
-                    🙏 Respect
-                </h3>
-
-                <p>
-                    Nous demandons à nos clients de traiter
-                    le personnel et les autres convives
-                    avec respect et courtoisie.
-                </p>
-
-            </div>
-
-
-            <div class="item">
-
-                <h3>
-                    📣 Communication
-                </h3>
-
-                <p>
-                    Pour toute demande particulière ou restriction
-                    alimentaire, nous vous invitons à nous en informer
-                    à l’avance afin de mieux vous servir.
-                </p>
-
-            </div>
-
-
-            <div class="item">
-
-                <h3>
-                    ⌛ Ponctualité
-                </h3>
-
-                <p>
-                    Nous encourageons nos clients à respecter
-                    les horaires d’ouverture du restaurant afin
-                    de garantir un service fluide et efficace.
-                </p>
-
-            </div>
-
-
-            <div class="item">
-
-                <h3>
-                    🌍 Éco-responsabilité
-                </h3>
-
-                <p>
-                    Nous invitons nos clients à soutenir nos efforts
-                    environnementaux en limitant le gaspillage
-                    alimentaire et en utilisant les ressources
-                    disponibles de manière responsable.
-                </p>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =====================================================
-         FOOTER
-    ===================================================== -->
-
-    <div class="management">
-        La Direction
-    </div>
-
-
-    <div class="seabel-signature">
-        Seabel Rym Beach · Djerba
-    </div>
-
-
-    <div class="back-to-top">
-
-        <a href="#">
-            ↑ Retour en haut
-        </a>
-
-    </div>
-
-
-    <div class="copyright">
-
-        &copy; 2026 Seabel Rym Beach Hotel.
-        Tous droits réservés.
-
-    </div>
-
-
+<div class="subtitle">
+Notre engagement pour une expérience de qualité
 </div>
 
+<div class="flags">
 
+<img src="https://flagcdn.com/fr.svg"
+     alt="Français" title="Français"
+     onclick="switchLanguage('fr')">
+
+<img src="https://flagcdn.com/gb.svg"
+     alt="English" title="English"
+     onclick="switchLanguage('en')">
+
+<img src="https://flagcdn.com/pt.svg"
+     alt="Português" title="Português"
+     onclick="switchLanguage('pt')">
+
+<img src="https://flagcdn.com/de.svg"
+     alt="Deutsch" title="Deutsch"
+     onclick="switchLanguage('de')">
+
+<img src="https://flagcdn.com/it.svg"
+     alt="Italiano" title="Italiano"
+     onclick="switchLanguage('it')">
+
+<img src="https://flagcdn.com/pl.svg"
+     alt="Polski" title="Polski"
+     onclick="switchLanguage('pl')">
+
+<img src="https://flagcdn.com/tn.svg"
+     alt="العربية" title="العربية"
+     onclick="switchLanguage('ar')">
+
+</div>
+</header>
+
+<section class="intro">
+<h2>Bienvenue au Walima</h2>
+<p>Cette charte reflète notre engagement à offrir à nos clients une expérience agréable, chaleureuse et responsable.</p>
+</section>
+
+<section class="section">
+<h2 id="rules-title" class="section-title">
+<span class="icon">📋</span>Règles générales
+</h2>
+<div id="rules-items" class="items">
+<div class="item">
+<h3>⏰ Horaires d’ouverture</h3>
+<p>Le restaurant est ouvert selon les horaires affichés. Les horaires des repas sont strictement respectés afin de garantir la qualité du service.</p>
+</div>
+<div class="item">
+<h3>👔 Tenue vestimentaire</h3>
+<p>Une tenue correcte est exigée au sein du restaurant afin de préserver une atmosphère agréable pour tous nos clients.</p>
+</div>
+<div class="item">
+<h3>🚭🐶 Articles interdits</h3>
+<p>Il est interdit de fumer à l’intérieur du restaurant. Les animaux domestiques ne sont pas autorisés.</p>
+</div>
+</div>
+</section>
+
+<section class="section">
+<h2 id="commitments-title" class="section-title">
+<span class="icon">⭐</span>Nos engagements
+</h2>
+<div id="commitments-items" class="items">
+<div class="item">
+<h3>🥗 Qualité des repas</h3>
+<p>Nous nous engageons à servir des repas frais, sains et équilibrés, préparés à partir d’ingrédients de qualité, en privilégiant les produits locaux et de saison.</p>
+</div>
+<div class="item">
+<h3>🤝 Hospitalité</h3>
+<p>Notre équipe s’engage à vous réserver un accueil chaleureux, à assurer un service attentif et à vous apporter une assistance rapide afin de garantir une expérience positive.</p>
+</div>
+<div class="item">
+<h3>🧼🍽️ Propreté et sécurité alimentaire</h3>
+<p>Nous respectons les normes d’hygiène et de sécurité alimentaire dans l’ensemble de nos opérations, conformément à la réglementation en vigueur.</p>
+</div>
+<div class="item">
+<h3>🌱♻️ Responsabilité environnementale</h3>
+<p>Nous nous engageons à réduire notre impact environnemental grâce à des pratiques responsables, notamment le recyclage, la réduction du gaspillage alimentaire et la maîtrise de la consommation d’énergie et d’eau.</p>
+</div>
+<div class="item">
+<h3>🧾🍽️ Adaptabilité</h3>
+<p>Nous sommes attentifs aux besoins alimentaires spécifiques et aux allergies de nos clients et nous nous efforçons de proposer des options adaptées.</p>
+</div>
+</div>
+</section>
+
+<section class="section">
+<h2 id="expectations-title" class="section-title">
+<span class="icon">🤝</span>Nos attentes envers nos clients
+</h2>
+<div id="expectations-items" class="items">
+<div class="item">
+<h3>🙏 Respect</h3>
+<p>Nous demandons à nos clients de traiter le personnel et les autres convives avec respect et courtoisie.</p>
+</div>
+<div class="item">
+<h3>📣 Communication</h3>
+<p>Pour toute demande particulière ou restriction alimentaire, nous vous invitons à nous en informer à l’avance afin de mieux vous servir.</p>
+</div>
+<div class="item">
+<h3>⌛ Ponctualité</h3>
+<p>Nous encourageons nos clients à respecter les horaires d’ouverture du restaurant afin de garantir un service fluide et efficace.</p>
+</div>
+<div class="item">
+<h3>🌍 Éco-responsabilité</h3>
+<p>Nous invitons nos clients à soutenir nos efforts environnementaux en limitant le gaspillage alimentaire et en utilisant les ressources disponibles de manière responsable.</p>
+</div>
+</div>
+</section>
+
+<div class="management">La Direction</div>
+<div class="seabel-signature">Seabel Rym Beach · Djerba</div>
+
+<div class="back-to-top">
+<a href="#">↑ Retour en haut</a>
+</div>
+
+<div class="copyright">
+&copy; 2026 Seabel Rym Beach Hotel. Tous droits réservés.
+</div>
+
+</div>
 </body>
-
 </html>
+'''
+
+out = Path("/mnt/data/charte_walima_seabel_rym_beach.html")
+out.write_text(html, encoding="utf-8")
+print(f"Fichier créé : {out}")
